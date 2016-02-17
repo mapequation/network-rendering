@@ -28,8 +28,10 @@ function cleanTmp(done) {
   del(['tmp']).then(() => done());
 }
 
-function onError() {
+function onError(err) {
   $.util.beep();
+  // console.log('!!!! ERROR !!!:', err);
+  $.notify().write(err);
 }
 
 // Lint a set of files
@@ -88,7 +90,10 @@ function _mocha() {
       reporter: 'dot',
       globals: Object.keys(mochaGlobals.globals),
       ignoreLeaks: false
-    }));
+    }))
+    .on('error', function(err) {
+      $.notify().write(err);
+    });
 }
 
 function _registerBabel() {
@@ -117,6 +122,10 @@ const watchFiles = ['src/**/*', 'test/**/*', 'package.json', '**/.eslintrc', '.j
 // Run the headless unit tests as you make changes.
 function watch() {
   gulp.watch(watchFiles, ['test']);
+}
+
+function watchBuild() {
+  gulp.watch(watchFiles, ['test', 'build']);
 }
 
 function testBrowser() {
@@ -197,6 +206,9 @@ gulp.task('test-browser', ['lint', 'clean-tmp'], testBrowser);
 
 // Run the headless unit tests as you make changes.
 gulp.task('watch', watch);
+
+// Run the headless unit tests as you make changes.
+gulp.task('watch-build', watchBuild);
 
 // An alias of test
 gulp.task('default', ['test']);

@@ -8,6 +8,7 @@
     "lint": "gulp lint",
     "test-browser": "gulp test-browser",
     "watch": "gulp watch",
+    "watch-build": "gulp watch-build",
     "build": "gulp build",
     "coverage": "gulp coverage"
   },
@@ -15,7 +16,12 @@
     "type": "git",
     "url": "https://github.com/danieledler/network-rendering.git"
   },
-  "keywords": ["network", "graph", "render", "svg"],
+  "keywords": [
+    "network",
+    "graph",
+    "render",
+    "svg"
+  ],
   "author": "Daniel Edler <edler.dev@gmail.com>",
   "license": "MIT",
   "bugs": {
@@ -41,6 +47,7 @@
     "gulp-livereload": "^3.8.1",
     "gulp-load-plugins": "^1.1.0",
     "gulp-mocha": "^2.2.0",
+    "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
