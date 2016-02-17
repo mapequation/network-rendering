@@ -2,13 +2,13 @@
 var data = {
   nodes: [
     {
-      x: 200,
-      y: 200,
+      x: 100,
+      y: 100,
       r: 50
     },
     {
-      x: 400,
-      y: 300,
+      x: 300,
+      y: 200,
       r: 20
     }
   ],
@@ -16,7 +16,12 @@ var data = {
     {
       source: 0,
       target: 1,
-      bend: 20
+      weight: 2
+    },
+    {
+      source: 1,
+      target: 0,
+      weight: 1
     }
   ]
 };
@@ -27,35 +32,33 @@ data.links.forEach(function(link) {
   link.target = data.nodes[link.target];
 });
 
-var width = 960,
-    height = 500;
+var width = 400,
+    height = 400;
+
+// var linkRenderer = networkRendering.getLinkRenderer()
+//   .bend(function(d) { return 20; })
+//   .width(function(d) { return d.weight * 10; });
 
 var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
 
-var nodes = svg.append("g").selectAll(".node")
-    .data(data.nodes)
-  .enter().append("circle")
-    .attr("class", "node")
-    .attr("cx", function(d) { return d.x; })
-    .attr("cy", function(d) { return d.y; })
-    .attr("r", function(d) { return d.r; });
-
-
 var links = svg.append("g").selectAll(".link")
     .data(data.links)
   .enter().append("path")
     .attr("class", "link")
+    .style("fill", "none")
+    .style("stroke", "#666")
+    .style("stroke-width", "1.5px")
     .attr("d", networkRendering.halfLink);
 
-
-function tick() {
-  path.attr("d", networkRendering.halfLink);
-  circle.attr("transform", transform);
-  text.attr("transform", transform);
-}
-
-function transform(d) {
-  return "translate(" + d.x + "," + d.y + ")";
-}
+var nodes = svg.append("g").selectAll(".node")
+    .data(data.nodes)
+  .enter().append("circle")
+    .attr("class", "node")
+    .style("fill", "#ccc")
+    .style("stroke", "#333")
+    .style("stroke-width", "1.5px")
+    .attr("cx", function(d) { return d.x; })
+    .attr("cy", function(d) { return d.y; })
+    .attr("r", function(d) { return d.r; });
