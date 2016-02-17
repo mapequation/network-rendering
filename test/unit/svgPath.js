@@ -1,4 +1,4 @@
-import * as svgPath from '../../src/svgPath';
+import svgPath from '../../src/svgPath';
 
 describe('svgPath', () => {
   describe('svg path helpers', () => {

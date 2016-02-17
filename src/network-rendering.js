@@ -1,6 +1,6 @@
-import * as svgPath from './svgPath';
+import svgPath from './svgPath';
 
-function halfLink(d) {
+export function halfLink(d) {
   const {source, target, width = 10, bend = 20} = d;
   const oppositeWidth = d.oppositeWidth || width;
   const x0 = source.x;

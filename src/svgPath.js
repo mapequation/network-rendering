@@ -13,3 +13,17 @@ export const moveTo = M;
 export const lineTo = L;
 export const curveTo = Q;
 export const end = Z;
+
+export default {
+  M,
+  m,
+  L,
+  l,
+  Q,
+  Z,
+  moveTo,
+  lineTo,
+  curveTo,
+  end,
+  combine,
+};

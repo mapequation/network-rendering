@@ -1,4 +1,3 @@
-networkRendering = networkRendering.default;
 
 var data = {
   nodes: [
