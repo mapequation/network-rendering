@@ -32,12 +32,16 @@ data.links.forEach(function(link) {
   link.target = data.nodes[link.target];
 });
 
+// Connect opposite links
+data.links[0].oppositeLink = 1;
+data.links[1].oppositeLink = 0;
+
 var width = 400,
     height = 400;
 
-// var linkRenderer = networkRendering.getLinkRenderer()
-//   .bend(function(d) { return 20; })
-//   .width(function(d) { return d.weight * 10; });
+var linkRenderer = networkRendering.halfLink()
+  .width(function(d) { return d.weight * 10; })
+  .oppositeLink(function(d) { return data.links[d.oppositeLink]; });
 
 var svg = d3.select("body").append("svg")
     .attr("width", width)
@@ -50,7 +54,7 @@ var links = svg.append("g").selectAll(".link")
     .style("fill", "none")
     .style("stroke", "#666")
     .style("stroke-width", "1.5px")
-    .attr("d", networkRendering.halfLink);
+    .attr("d", linkRenderer);
 
 var nodes = svg.append("g").selectAll(".node")
     .data(data.nodes)

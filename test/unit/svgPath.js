@@ -1,4 +1,4 @@
-import svgPath from '../../src/svgPath';
+import svgPath from '../../src/utils/svgPath';
 
 describe('svgPath', () => {
   describe('svg path helpers', () => {
@@ -17,8 +17,9 @@ describe('svgPath', () => {
       expect(svgPath.combine(
         svgPath.M(1,2),
         svgPath.L(3,4),
+        svgPath.Q(5,6,7,8),
         svgPath.Z()
-      )).to.equal('M 1 2 L 3 4 Z');
+      )).to.equal('M 1 2 L 3 4 Q 5 6, 7 8 Z');
     });
   });
 });
