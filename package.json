@@ -1,6 +1,6 @@
 {
   "name": "network-rendering",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "Draw nice nodes and links in SVG",
   "main": "dist/network-rendering.js",
   "scripts": {
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/danieledler/network-rendering.git"
+    "url": "https://github.com/mapequation/network-rendering.git"
   },
   "keywords": [
     "network",
@@ -23,11 +23,11 @@
     "svg"
   ],
   "author": "Daniel Edler <edler.dev@gmail.com>",
-  "license": "MIT",
+  "license": "AGPLv3+",
   "bugs": {
-    "url": "https://github.com/danieledler/network-rendering/issues"
+    "url": "https://github.com/mapequation/network-rendering/issues"
   },
-  "homepage": "https://github.com/danieledler/network-rendering",
+  "homepage": "https://github.com/mapequation/network-rendering",
   "devDependencies": {
     "babel-core": "^6.3.26",
     "babel-eslint": "^4.1.6",
