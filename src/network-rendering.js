@@ -1,38 +1,38 @@
-import svgPath from './utils/svgPath';
+import SvgPath from './utils/SvgPath';
 import functor from './utils/functor';
 
 export function halfLink() {
 
-  var _x0 = (d) => d.source.x;
-  var _y0 = (d) => d.source.y;
-  var _r0 = (d) => d.source.r;
-  var _x1 = (d) => d.target.x;
-  var _y1 = (d) => d.target.y;
-  var _r1 = (d) => d.target.r;
-  var _width = (d) => d.width || 10;
-  var _bend = (d) => d.bend || 30; // Use average if opposite bend differ
-  var _oppositeLink = (d) => null;
+  var _source = (link) => link.source;
+  var _target = (link) => link.target;
+  var _nodeRadius = (node) => node.size || 10;
+  var _nodeX = (node) => node.x;
+  var _nodeY = (node) => node.y;
+  var _width = (link) => link.width || 10;
+  var _bend = (link) => link.bend || 30;
+  var _oppositeLink = (link) => null;
 
-  renderHalfLink.x0 = function(_) { if (!arguments.length) { return _x0; } _x0 = functor(_); return renderHalfLink; };
-  renderHalfLink.y0 = function(_) { if (!arguments.length) { return _y0; } _y0 = functor(_); return renderHalfLink; };
-  renderHalfLink.r0 = function(_) { if (!arguments.length) { return _r0; } _r0 = functor(_); return renderHalfLink; };
-  renderHalfLink.x1 = function(_) { if (!arguments.length) { return _x1; } _x1 = functor(_); return renderHalfLink; };
-  renderHalfLink.y1 = function(_) { if (!arguments.length) { return _y1; } _y1 = functor(_); return renderHalfLink; };
-  renderHalfLink.r1 = function(_) { if (!arguments.length) { return _r1; } _r1 = functor(_); return renderHalfLink; };
+  renderHalfLink.source = function(_) { if (!arguments.length) { return _source; } _source = functor(_); return renderHalfLink; };
+  renderHalfLink.target = function(_) { if (!arguments.length) { return _target; } _target = functor(_); return renderHalfLink; };
+  renderHalfLink.nodeRadius = function(_) { if (!arguments.length) { return _nodeRadius; } _nodeRadius = functor(_); return renderHalfLink; };
+  renderHalfLink.nodeX = function(_) { if (!arguments.length) { return _nodeX; } _nodeX = functor(_); return renderHalfLink; };
+  renderHalfLink.nodeY = function(_) { if (!arguments.length) { return _nodeY; } _nodeY = functor(_); return renderHalfLink; };
   renderHalfLink.width = function(_) { if (!arguments.length) { return _width; } _width = functor(_); return renderHalfLink; };
   renderHalfLink.bend = function(_) { if (!arguments.length) { return _bend; } _bend = functor(_); return renderHalfLink; };
   renderHalfLink.oppositeLink = function(_) { if (!arguments.length) { return _oppositeLink; } _oppositeLink = functor(_); return renderHalfLink; };
 
-  function renderHalfLink(d) {
-    const x0 = _x0(d);
-    const y0 = _y0(d);
-    const r0 = _r0(d);
-    const x1 = _x1(d);
-    const y1 = _y1(d);
-    const r1 = _r1(d);
-    const width = _width(d);
-    const oppositeLink = _oppositeLink(d);
-    const bend = oppositeLink ? (_bend(oppositeLink) + _bend(d)) / 2 : _bend(d);
+  function renderHalfLink(link) {
+    const source = _source(link);
+    const target = _target(link);
+    const x0 = _nodeX(source);
+    const y0 = _nodeY(source);
+    const r0 = _nodeRadius(source);
+    const x1 = _nodeX(target);
+    const y1 = _nodeY(target);
+    const r1 = _nodeRadius(target);
+    const width = _width(link);
+    const oppositeLink = _oppositeLink(link);
+    const bend = _bend(link);
     const oppositeWidth = oppositeLink ? _width(oppositeLink) : width;
     const dx = x1 - x0;
     const dy = y1 - y0;
@@ -104,25 +104,24 @@ export function halfLink() {
     const x14 = x13 + tipWidth * left1.x;
     const y14 = y13 + tipWidth * left1.y;
 
-    return svgPath.combine(
-      svgPath.moveTo(x02, y02),
-      svgPath.lineTo(x0, y0),
-      svgPath.lineTo(x04, y04),
-      svgPath.lineTo(x03, y03),
-      svgPath.curveTo(xCP2, yCP2, x13, y13),
-      svgPath.lineTo(x14, y14),
-      svgPath.lineTo(x11, y11),
-      svgPath.lineTo(x12, y12),
-      svgPath.curveTo(xCP1, yCP1, x02, y02),
-      svgPath.end()
-    );
+    return new SvgPath()
+      .moveTo(x02, y02)
+      .lineTo(x0, y0)
+      .lineTo(x04, y04)
+      .lineTo(x03, y03)
+      .curveTo(xCP2, yCP2, x13, y13)
+      .lineTo(x14, y14)
+      .lineTo(x11, y11)
+      .lineTo(x12, y12)
+      .curveTo(xCP1, yCP1, x02, y02)
+      .end()
+      .getString();
   }
 
   return renderHalfLink;
 }
 
 const networkRendering = {
-  svgPath,
   halfLink,
 };
 

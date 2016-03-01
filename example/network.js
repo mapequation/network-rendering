@@ -61,8 +61,7 @@ var linkWidth = d3.scale.linear()
   .range([7, 13]);
 
 var linkRenderer = networkRendering.halfLink()
-  .r0(function(d) { return nodeRadius(d.source.flow); })
-  .r1(function(d) { return nodeRadius(d.target.flow); })
+  .nodeRadius(function(node) { return nodeRadius(node.flow); })
   .width(function(d) { return linkWidth(d.flow); })
   .oppositeLink(function(d) { return data.links[d.oppositeLink]; });
 

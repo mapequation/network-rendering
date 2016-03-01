@@ -1,11 +1,11 @@
 import networkRendering from '../../src/network-rendering';
 
-function checkLink(link) {
-  expect(link).to.be.a('string');
-  expect(link.length).to.be.within(100, 500);
-  expect(link.charAt(0)).to.equal('M');
-  expect(link.charAt(link.length - 1)).to.equal('Z');
-  expect(link).to.not.contain('NaN');
+function checkLinkPath(linkPath) {
+  expect(linkPath).to.be.a('string');
+  expect(linkPath.length).to.be.within(100, 500);
+  expect(linkPath.charAt(0)).to.equal('M');
+  expect(linkPath.charAt(linkPath.length - 1)).to.equal('Z');
+  expect(linkPath).to.not.contain('NaN');
 }
 
 describe('networkRendering', () => {
@@ -24,33 +24,33 @@ describe('networkRendering', () => {
     });
 
     it('should return empty link for overlapping nodes', () => {
-      const link = linkRenderer({
-        source: {x: 10, y: 10, r: 10},
-        target: {x: 20, y: 20, r: 10}
+      const linkPath = linkRenderer({
+        source: {x: 10, y: 10, size: 10},
+        target: {x: 20, y: 20, size: 10}
       });
-      expect(link).to.equal('');
+      expect(linkPath).to.equal('');
     });
 
     it('should return non-empty link for overlapping nodes if large bend', () => {
       linkRenderer.bend(50);
-      const link = linkRenderer({
-        source: {x: 10, y: 10, r: 10},
-        target: {x: 20, y: 20, r: 10}
+      const linkPath = linkRenderer({
+        source: {x: 10, y: 10, size: 10},
+        target: {x: 20, y: 20, size: 10}
       });
       expect(linkRenderer.bend).to.have.been.calledOnce;
-      expect(linkRenderer.bend()(link)).to.equal(50);
-      checkLink(link);
+      expect(linkRenderer.bend()('dummy link')).to.equal(50);
+      checkLinkPath(linkPath);
       linkRenderer.bend(20);
       expect(linkRenderer.bend).to.have.been.calledThrice;
     });
 
     it('should return a SVG path string for non-overlapping nodes', () => {
-      const link = linkRenderer({
-        source: {x: 10, y: 10, r: 10},
-        target: {x: 30, y: 20, r: 5}
+      const linkPath = linkRenderer({
+        source: {x: 10, y: 10, size: 10},
+        target: {x: 30, y: 20, size: 5}
       });
-      expect(link).to.contain('M');
-      expect(link.length).to.be.within(100, 500);
+      expect(linkPath).to.contain('M');
+      expect(linkPath.length).to.be.within(100, 500);
     });
   });
 });
