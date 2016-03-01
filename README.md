@@ -9,4 +9,4 @@ Draw nice nodes and links in SVG.
 [![devDependency Status](https://david-dm.org/danieledler/network-rendering/dev-status.svg)](https://david-dm.org/danieledler/network-rendering#info=devDependencies)
 
 
-![Example image](example.svg)
+![Example image](https://cdn.rawgit.com/mapequation/network-rendering/4166608c9a292335b809faa56ecbe2dc751c29d7/example.svg)
