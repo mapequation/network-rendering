@@ -1,6 +1,7 @@
 # network-rendering
+[![NPM](https://nodei.co/npm/network-rendering.png?downloads=true&stars=true)](https://www.npmjs.com/package/network-rendering)
 
-Draw nice nodes and links in SVG.
+Draw nice nodes and links in SVG. Developed for the network visualization tools at [mapequation.org](http://www.mapequation.org).
 
 ![Example image](https://cdn.rawgit.com/mapequation/network-rendering/4166608c9a292335b809faa56ecbe2dc751c29d7/example.svg)
 
@@ -72,7 +73,7 @@ If `radius` is specified, sets the node radius accessor to the specified functio
 
 #### halfLinkRenderer.nodeX([x]) -> self
 
-If `x` is specified, sets the node x-coordinate accessor to the specified function or constant. If not specified, returns the current node x-coordinate accessor, which defaults to:
+If `x` is specified, sets the nodes' x-coordinate accessor to the specified function or constant. If not specified, returns the nodes' current x-coordinate accessor, which defaults to:
 
 ```js
 (node) => node.x
@@ -80,7 +81,7 @@ If `x` is specified, sets the node x-coordinate accessor to the specified functi
 
 #### halfLinkRenderer.nodeY([y]) -> self
 
-If `y` is specified, sets the node's y-coordinate accessor to the specified function or constant. If not specified, returns the node's current y-coordinate accessor, which defaults to:
+If `y` is specified, sets the nodes' y-coordinate accessor to the specified function or constant. If not specified, returns the nodes' current y-coordinate accessor, which defaults to:
 
 ```js
 (node) => node.y
