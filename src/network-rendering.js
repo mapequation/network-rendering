@@ -55,11 +55,14 @@ export function halfLink() {
     // Size of opposite arrowhead
     const oppositeTipLength = Math.min(lBetween / 3, 10 * Math.pow(oppositeWidth, 1 / 3));
 
-    // Curvature
+    // Bending
+    const bendMagnitude = Math.abs(bend);
+    const outerBendAddition = Math.pow(bendMagnitude / 10, 0.4);
     const positiveCurvature = dir.x > 0 || (dir.x == 0 && dir.y < 0);
     const curvatureSign = positiveCurvature ? 1 : -1;
-    const outerBendAddition = Math.pow(bend / 10, 0.4);
-    const signedBend = bend * curvatureSign;
+    const bendSign = bend > 0 ? 1 : -1;
+    const finalBendSign = curvatureSign * bendSign;
+    const signedBend = finalBendSign * bendMagnitude;
 
     // Calculate the end points for the middle bezier curve. Rotate them towards the control point later.
     const x02tmp = x0 + (r0 + oppositeTipLength) * dir.x;
