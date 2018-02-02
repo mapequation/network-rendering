@@ -172,7 +172,7 @@ export function undirectedLink() {
 
     // Bending
     const bendMagnitude = Math.abs(bend);
-    const outerBendAddition = (bendMagnitude / 10) ** 0.4;
+    const outerBendAddition = Math.pow(bendMagnitude / 10,  0.4);
     const positiveCurvature = dir.x > 0 || (dir.x === 0 && dir.y < 0);
     const curvatureSign = positiveCurvature ? 1 : -1;
     const bendSign = bend > 0 ? 1 : -1;
@@ -235,3 +235,4 @@ const networkRendering = {
 };
 
 export default networkRendering;
+
