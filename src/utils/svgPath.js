@@ -17,7 +17,6 @@ export default class SvgPath {
   }
 
   getString() { return this._path.join(' '); }
-  toString() { return getString(); }
 
   relative() { this._relative = true; return this; }
   absolute() { this._relative = false; return this; }
