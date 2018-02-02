@@ -123,4 +123,4 @@ The API is the same as for halfLinkRenderer except that oppositeLink does not ex
 License
 -------
 
-[AGPLv3+](https://github.com/mapequation/network-rendering/blob/master/LICENSE)
+[MPL-2.0](https://github.com/mapequation/network-rendering/blob/master/LICENSE)
