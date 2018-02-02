@@ -114,6 +114,11 @@ If `bend` is specified, sets the bend accessor to the specified function or cons
 (link) => link.bend || 30
 ```
 
+### networkRendering.undirectedLink() -> undirectedLinkRenderer
+
+Creates a undirected-link renderer function with chainable methods.
+The API is the same as for halfLinkRenderer except that oppositeLink does not exist in undirectedLinkRenderer.
+
 
 License
 -------
