@@ -1,3 +1,3 @@
-### [0.0.1](https://github.com/danieledler/network-rendering/releases/tag/v0.0.1)
+### [1.0.0](https://github.com/mapequation/network-rendering/releases/tag/v1.0.0)
 
-- The first release
+- Support undirected and directed links with bending and merging of opposite directed links
