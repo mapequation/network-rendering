@@ -36,12 +36,12 @@ export function halfLink() {
     const r1 = _nodeRadius(target);
     const width = _width(link);
     const oppositeLink = _oppositeLink(link);
-    const bend = _bend(link);
     const oppositeWidth = oppositeLink ? _width(oppositeLink) : width;
     const dx = x1 - x0;
     const dy = y1 - y0;
     const l = Math.sqrt(dx * dx + dy * dy);
     const lBetween = l - r0 - r1;
+    const bend = _bend(link, lBetween);
 
     // Skip draw link of nodes overlap if not big bend
     if (lBetween <= 0 && Math.abs(bend) < 50) {
@@ -155,11 +155,11 @@ export function undirectedLink() {
     const y1 = _nodeY(target);
     const r1 = _nodeRadius(target);
     const width = _width(link);
-    const bend = _bend(link);
     const dx = x1 - x0;
     const dy = y1 - y0;
     const l = Math.sqrt(dx * dx + dy * dy);
     const lBetween = l - r0 - r1;
+    const bend = _bend(link, lBetween);
 
     // Skip draw link of nodes overlap if not big bend
     if (lBetween <= 0 && Math.abs(bend) < 50) {
