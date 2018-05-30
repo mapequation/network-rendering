@@ -39,9 +39,11 @@ svg.append("g").selectAll(".link")
 API
 ---
 
-### networkRendering.halfLink() -> halfLinkRenderer
+### networkRendering.halfLink([path]) -> halfLinkRenderer
 
-Creates a half-link renderer function with chainable methods.
+Creates a half-link renderer function with chainable methods, and use `path`
+as a serializer. `path` defaults to the supplied *SvgPath* but anything that
+supports the same API should work, for example [d3-path](http://github.com/d3/d3-path).
 
 #### halfLinkRenderer(link) -> string
 

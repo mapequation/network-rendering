@@ -2,10 +2,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import SvgPath from './utils/SvgPath';
+import { Path } from './utils/SvgPath';
 import functor from './utils/functor';
 
-export function halfLink() {
+export function halfLink(path) {
+  path = (typeof b !== 'undefined') ? path : Path;
 
   var _source = (link) => link.source;
   var _target = (link) => link.target;
@@ -111,24 +112,26 @@ export function halfLink() {
     const x14 = x13 + tipWidth * left1.x;
     const y14 = y13 + tipWidth * left1.y;
 
-    return new SvgPath()
-      .moveTo(x02, y02)
-      .lineTo(x0, y0)
-      .lineTo(x04, y04)
-      .lineTo(x03, y03)
-      .curveTo(xCP2, yCP2, x13, y13)
-      .lineTo(x14, y14)
-      .lineTo(x11, y11)
-      .lineTo(x12, y12)
-      .curveTo(xCP1, yCP1, x02, y02)
-      .end()
-      .getString();
+    const p = path();
+    p.moveTo(x02, y02);
+    p.lineTo(x0, y0);
+    p.lineTo(x04, y04);
+    p.lineTo(x03, y03);
+    p.quadraticCurveTo(xCP2, yCP2, x13, y13);
+    p.lineTo(x14, y14);
+    p.lineTo(x11, y11);
+    p.lineTo(x12, y12);
+    p.quadraticCurveTo(xCP1, yCP1, x02, y02);
+    p.closePath();
+    return p.toString();
   }
 
   return renderHalfLink;
 }
 
-export function undirectedLink() {
+export function undirectedLink(path) {
+  path = (typeof b !== 'undefined') ? path : Path;
+
   let _source = (link) => link.source;
   let _target = (link) => link.target;
   let _nodeRadius = (node) => node.size || 10;
@@ -216,14 +219,14 @@ export function undirectedLink() {
     const x12 = x1 + halfWidth * left1.x;
     const y12 = y1 + halfWidth * left1.y;
 
-    return new SvgPath()
-      .moveTo(x01, y01)
-      .lineTo(x02, y02)
-      .curveTo(xCP2, yCP2, x12, y12)
-      .lineTo(x11, y11)
-      .curveTo(xCP1, yCP1, x01, y01)
-      .end()
-      .getString();
+    const p = path();
+    p.moveTo(x01, y01);
+    p.lineTo(x02, y02);
+    p.quadraticCurveTo(xCP2, yCP2, x12, y12);
+    p.lineTo(x11, y11);
+    p.quadraticCurveTo(xCP1, yCP1, x01, y01);
+    p.closePath();
+    return p.toString();
   }
 
   return renderUndirectedLink;

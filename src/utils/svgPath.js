@@ -17,6 +17,7 @@ export default class SvgPath {
   }
 
   getString() { return this._path.join(' '); }
+  toString() { return this.getString(); }
 
   relative() { this._relative = true; return this; }
   absolute() { this._relative = false; return this; }
@@ -32,7 +33,11 @@ export default class SvgPath {
   q(x1, y1, x, y) { this._path.push(q(x1, y1, x, y)); return this; }
   Q(x1, y1, x, y) { this._path.push(Q(x1, y1, x, y)); return this; }
   curveTo(x1, y1, x, y) { this._path.push(this._relative ? q(x1, y1, x, y) : Q(x1, y1, x, y)); return this; }
+  quadraticCurveTo(x1, y1, x, y) { return this.curveTo(x1, y1, x, y); }
 
   Z() { this._path.push(Z()); return this; }
   end() { this._path.push(Z()); return this; }
+  closePath() { return this.end(); }
 }
+
+export const Path = () => new SvgPath();
