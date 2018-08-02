@@ -6,7 +6,7 @@ import { Path } from './utils/SvgPath';
 import functor from './utils/functor';
 
 export function halfLink(path) {
-  path = (typeof b !== 'undefined') ? path : Path;
+  path = (typeof path !== 'undefined') ? path : Path;
 
   var _source = (link) => link.source;
   var _target = (link) => link.target;
@@ -130,7 +130,7 @@ export function halfLink(path) {
 }
 
 export function undirectedLink(path) {
-  path = (typeof b !== 'undefined') ? path : Path;
+  path = (typeof path !== 'undefined') ? path : Path;
 
   let _source = (link) => link.source;
   let _target = (link) => link.target;
